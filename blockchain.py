@@ -145,6 +145,9 @@ def verify_chain():
     return True
 
 
+def verify_transactions():
+    return all([verify_transaction(tx)  for tx in open_transactions])
+
 # Using waiting_for_input to control the while loop as alt to 'break'
 waiting_for_input = True
 while waiting_for_input:
@@ -153,6 +156,7 @@ while waiting_for_input:
     print("   2: Mine a new block")
     print("   3: Output the blockchain blocks")
     print("   4: Print participants")
+    print("   5: Check transaction validity")
     print("   h: Manipulate blockchain")
     print("   q: Quit")
     user_choice = get_user_choice()
@@ -175,6 +179,11 @@ while waiting_for_input:
         print_blockchain_elements()
     elif user_choice == '4':
         print_participants()
+    elif user_choice == '5':
+        if verify_transactions():
+            print('All open transactions are valid')
+        else: 
+            print('Uh oh, there are INVALID transactions ')
     elif user_choice == 'h':
         if len(blockchain) >= 1:
             blockchain[0] = {

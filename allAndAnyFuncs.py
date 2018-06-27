@@ -12,3 +12,5 @@ print(alpha)
 beta = [el > 0  for el in nums]
 #beta = [ "potential list entry" for " each element" in "a-list-name"]
 all(beta) #yeilds false because of -5 in nums
+# or we could
+print(all([el > 0  for el in nums]))
